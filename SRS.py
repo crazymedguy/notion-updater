@@ -4,7 +4,6 @@ from notion.block import *
 from notion.collection import NotionDate
 import math
 from datetime import datetime
-from tqdm import tqdm
 import copy
 import numpy as np
 import os
@@ -47,7 +46,7 @@ def add_row_callback(row):
 def register_row_callbacks(collection):
     print("Registering Row Callbacks...\n")
     rows = collection.collection.get_rows()
-    for row in tqdm(rows):
+    for row in rows:
         add_row_callback(row)
     return
 
@@ -188,4 +187,3 @@ collection.add_callback(collection_callback)
 register_row_callbacks(collection)
 print("\nMonitoring now...\n")
 client.start_monitoring()
-input()
