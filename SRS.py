@@ -92,7 +92,7 @@ def get_rtime(top, qs):
     rtime_list = []
     for q in qs:
         timeNow = UTCtoGMT8(datetime.now())
-		time = NotionDate(start=timeNow)
+        time = NotionDate(start=timeNow)
         rtime_list.append(time)
     return rtime_list
 
@@ -154,16 +154,16 @@ def update_qns_values(qs, m):
     return
 
 def UTCtoGMT8(dt):
-	from_zone = tz.gettz('UTC')
-	to_zone = tz.gettz('Asia/Singapore')
-	utc = datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
-	utc = utc.replace(tzinfo=from_zone)
-	central = utc.astimezone(to_zone)
-	return
+    from_zone = tz.gettz('UTC')
+    to_zone = tz.gettz('Asia/Singapore')
+    utc = datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
+    utc = utc.replace(tzinfo=from_zone)
+    central = utc.astimezone(to_zone)
+    return
 
 def update_topic_date(topic):
     print("Updating topic date...")
-	timeNow = UTCtoGMT8(timedate.now())
+    timeNow = UTCtoGMT8(timedate.now())
     topic.Revised = NotionDate(start=timeNow)
     return
 
@@ -199,5 +199,5 @@ register_row_callbacks(collection)
 print("\nMonitoring now...\n")
 
 while True:
-	client.start_monitoring()
-	time.sleep(0.01)
+    client.start_monitoring()
+    time.sleep(0.01)
