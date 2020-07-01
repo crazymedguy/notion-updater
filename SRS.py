@@ -186,5 +186,7 @@ def main(record):
 collection.add_callback(collection_callback)
 register_row_callbacks(collection)
 print("\nMonitoring now...\n")
-client.start_monitoring()
-input()
+
+while True:
+	client.start_monitoring()
+	time.sleep(0.01)
