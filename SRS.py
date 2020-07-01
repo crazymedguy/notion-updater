@@ -4,7 +4,7 @@ from notion.block import *
 from notion.collection import NotionDate
 import math
 from datetime import datetime
-from datetime import timezone, timedelta
+from pytz import timezone
 import copy
 import numpy as np
 import os
@@ -154,9 +154,8 @@ def update_qns_values(qs, m):
     return
 
 def UTCtoGMT8(dt):
-    sgtTimeDelta = datetime.timedelta(hours=8)
-    sgTZ = datetime.timezone(sgtTimeDelta, name="SGT")
-    return dt.replace(tzinfo=timezone.utc).astimezone(sgTZ)
+    utcnow = datetime.now()
+    return utcnow.astimezone(timezone('Asia/Singapore'))
 
 def update_topic_date(topic):
     print("Updating topic date...")
