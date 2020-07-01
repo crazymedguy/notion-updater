@@ -92,7 +92,7 @@ def get_rtime(top, qs):
     rtime_list = []
     for q in qs:
         timeNow = UTCtoGMT8(datetime.now())
-        time = NotionDate(start=timeNow)
+        time = NotionDate(start=timeNow,end=None,timezone=None)
         rtime_list.append(time)
     return rtime_list
 
@@ -160,7 +160,7 @@ def UTCtoGMT8(dt):
 def update_topic_date(topic):
     print("Updating topic date...")
     timeNow = UTCtoGMT8(datetime.now())
-    topic.Revised = NotionDate(start=timeNow)
+    topic.Revised = NotionDate(start=timeNow,end=None,timezone=None)
     return
 
 def update_topic_count(topic):
