@@ -101,8 +101,6 @@ def get_interval(qs):
     interval_list=[]
     for q in qs:
         pint = q.p_interval
-        if pint is None:
-            pint = learning_steps[0]
         interval_list.append(pint)
     return interval_list
 
@@ -127,7 +125,9 @@ def calculate_interval(m):
         g = q[1]
         r = q[2]
         i = q[3]
-        if i < learning_steps[-1]:
+        if i is None:
+            ni = learning_steps[0]
+        elif i < learning_steps[-1]:
             mini = min(learning_steps, key=lambda x:abs(x-i))
             n = learning_steps.index(mini)
             ni = learning_steps[n+1]
