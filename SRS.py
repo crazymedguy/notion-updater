@@ -159,7 +159,7 @@ def UTCtoGMT8(dt):
 
 def update_topic_date(topic):
     print("Updating topic date...")
-    timeNow = UTCtoGMT8(timedate.now())
+    timeNow = UTCtoGMT8(datetime.now())
     topic.Revised = NotionDate(start=timeNow)
     return
 
