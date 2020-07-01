@@ -1,6 +1,5 @@
 ahk==0.6.2
 altgraph==0.16.1
-anki==0.0.2
 appdirs==1.4.3
 beautifulsoup4==4.8.0
 bs4==0.0.1
