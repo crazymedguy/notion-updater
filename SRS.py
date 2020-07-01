@@ -2,7 +2,6 @@ from cachetools import cached
 from notion.client import NotionClient
 from notion.block import *
 from notion.collection import NotionDate
-from multiprocessing import Lock
 import math
 from datetime import datetime
 from tqdm import tqdm
@@ -10,8 +9,6 @@ import copy
 import numpy as np
 import os
 from os import environ 
-
-#mutex = Lock()
 
 ########## VALUES #############
 desired_success_rate = 0.75
