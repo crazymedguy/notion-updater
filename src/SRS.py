@@ -7,15 +7,15 @@ import numpy as np
 from src.Config import Config
 
 class SRS:
-    def __init__(self):
+    def __init__(self, config=Config()):
         self.desired_success_rate = 0.75
         self.default_ease_rate = 2.50
         self.easecap = 0.20
         self.learning_steps = [15,1440]
         self.grade_allocations = [0.01, 0.25, 0.50, 0.75, 0.99] #"No idea", "Unsure", "Half Right", "Almost Perfect", "Nailed It"
-        c = Config()
-        self.client = c.client()
-        self.collection = self.client.get_collection_view(c.topics_collection_url())
+        self.config = config
+        self.client = self.config.client()
+        self.collection = self.client.get_collection_view(self.config.topics_collection_url())
 
     def get_block(self, id):
         return self.client.get_block(id)
@@ -79,8 +79,8 @@ class SRS:
         print("Getting revised time list...")
         rtime_list = []
         for q in qs:
-            timeNow = c.nowGMT8()
-            time = NotionDate(start=timeNow,end=None,timezone=c.localTZ)
+            timeNow = self.config.nowGMT8()
+            time = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ)
             rtime_list.append(time)
         return rtime_list
 
@@ -146,8 +146,8 @@ class SRS:
 
     def update_topic_date(self, topic):
         print("Updating topic date...")
-        timeNow = c.nowGMT8()
-        topic.Revised = NotionDate(start=timeNow,end=None,timezone=c.localTZ)
+        timeNow = self.config.nowGMT8()
+        topic.Revised = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ)
         return
 
     def update_topic_count(self, topic):
