@@ -13,8 +13,8 @@ class SRS:
         self.easecap = 0.20
         self.learning_steps = [15,1440]
         self.grade_allocations = [0.01, 0.25, 0.50, 0.75, 0.99] #"No idea", "Unsure", "Half Right", "Almost Perfect", "Nailed It"
-        self.client = Config.client()
-        self.collection = self.client.get_collection_view(Config.topics_collection_url)
+        self.client = c.client()
+        self.collection = self.client.get_collection_view(c.topics_collection_url)
 
     def get_block(self, id):
         return self.client.get_block(id)
@@ -78,8 +78,8 @@ class SRS:
         print("Getting revised time list...")
         rtime_list = []
         for q in qs:
-            timeNow = Config.nowGMT8()
-            time = NotionDate(start=timeNow,end=None,timezone=Config.localTZ)
+            timeNow = c.nowGMT8()
+            time = NotionDate(start=timeNow,end=None,timezone=c.localTZ)
             rtime_list.append(time)
         return rtime_list
 
@@ -145,8 +145,8 @@ class SRS:
 
     def update_topic_date(self, topic):
         print("Updating topic date...")
-        timeNow = Config.nowGMT8()
-        topic.Revised = NotionDate(start=timeNow,end=None,timezone=Config.localTZ)
+        timeNow = c.nowGMT8()
+        topic.Revised = NotionDate(start=timeNow,end=None,timezone=c.localTZ)
         return
 
     def update_topic_count(self, topic):
@@ -187,5 +187,6 @@ class SRS:
                 if elapsed == timelimit:
                     n = False
 
+c = Config()
 p = SRS()
 p.start_loop()
