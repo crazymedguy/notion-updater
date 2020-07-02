@@ -15,7 +15,7 @@ class SRS:
         self.grade_allocations = [0.01, 0.25, 0.50, 0.75, 0.99] #"No idea", "Unsure", "Half Right", "Almost Perfect", "Nailed It"
         c = Config()
         self.client = c.client()
-        self.collection = self.client.get_collection_view(c.topics_collection_url)
+        self.collection = self.client.get_collection_view(c.topics_collection_url())
 
     def get_block(self, id):
         return self.client.get_block(id)
