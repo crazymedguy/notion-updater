@@ -127,10 +127,13 @@ def calculate_interval(m):
         i = q[3]
         if i is None:
             ni = learning_steps[0]
-        elif i < learning_steps[-1]:
-            mini = min(learning_steps, key=lambda x:abs(x-i))
-            n = learning_steps.index(mini)
-            ni = learning_steps[n+1]
+        elif i < learning_steps[-1]:          # If interval is within Learning Range
+            if g >= grade_allocations[2]:     # If grade is equal or above 50%, go to next step.
+                mini = min(learning_steps, key=lambda x:abs(x-i))
+                n = learning_steps.index(mini)
+                ni = learning_steps[n+1]
+            else:                             # If grade is below 50%, restart at first step.
+                ni = learning_steps[0]
         else:
             ni = i * e
         q[3] = ni
