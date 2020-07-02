@@ -26,5 +26,5 @@ class Config():
 
     def nowGMT8(self):
         x = datetime.now()
-        x = x.astimezone(self.localTZ)
+        x = x.astimezone(self.localTZ())
         return x
