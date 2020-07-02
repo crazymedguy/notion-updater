@@ -187,4 +187,5 @@ class SRS:
                 if elapsed == timelimit:
                     n = False
 
-SRS.start_loop()
+p = SRS()
+p.start_loop()
