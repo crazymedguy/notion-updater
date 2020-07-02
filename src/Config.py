@@ -10,7 +10,7 @@ class Config():
         return environ['NOTION_TOKEN']
 
     def client(self):
-        return NotionClient(token_v2=str(self.notion_token), monitor=True, start_monitoring=True)
+        return NotionClient(token_v2=environ['NOTION_TOKEN'], monitor=True, start_monitoring=True)
 
     @cached(cache={})
     def topics_collection_url(self):
