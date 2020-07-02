@@ -13,6 +13,7 @@ class SRS:
         self.easecap = 0.20
         self.learning_steps = [15,1440]
         self.grade_allocations = [0.01, 0.25, 0.50, 0.75, 0.99] #"No idea", "Unsure", "Half Right", "Almost Perfect", "Nailed It"
+        c = Config()
         self.client = c.client()
         self.collection = self.client.get_collection_view(c.topics_collection_url)
 
@@ -187,6 +188,6 @@ class SRS:
                 if elapsed == timelimit:
                     n = False
 
-c = Config()
+
 p = SRS()
 p.start_loop()
