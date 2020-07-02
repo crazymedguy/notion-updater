@@ -1,1 +1,1 @@
-worker: python SRS.py
+worker: src/python SRS.py
