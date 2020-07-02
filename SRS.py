@@ -5,6 +5,7 @@ from notion.collection import NotionDate
 import math
 from datetime import datetime
 from pytz import timezone
+import time
 import copy
 import numpy as np
 import os
@@ -192,11 +193,21 @@ def main(record):
     #update_topic_values()
     return
 
-
-collection.add_callback(collection_callback)
-register_row_callbacks(collection)
-print("\nMonitoring now...\n")
-
 while True:
-    client.start_monitoring()
-    time.sleep(0.01)
+    start_time = time.time()
+    collection.add_callback(collection_callback)
+    register_row_callbacks(collection)
+    print("\nMonitoring now...\n")
+    timelimit = 3600
+    n = True
+    while n == True:
+        client.start_monitoring()
+        time.sleep(0.01)
+        elapsed = time.time() - start_time
+        if elapsed == timelimit:
+            n = False
+
+
+
+
+
