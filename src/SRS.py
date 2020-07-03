@@ -51,7 +51,7 @@ class SRS:
         ease_list=[]
         for q in qs:
             if q.ease is None:
-                ease = self, self.default_ease_rate
+                ease = self.default_ease_rate
             else:
                 ease = q.ease
             ease_list.append(ease)
