@@ -89,7 +89,7 @@ class SRS:
         rtime_list = []
         for q in qs:
             timeNow = self.config.nowGMT8()
-            time = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ)
+            time = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ())
             rtime_list.append(time)
         return rtime_list
 
@@ -160,7 +160,7 @@ class SRS:
     def update_topic_date(self, topic):
         print("Updating topic date...")
         timeNow = self.config.nowGMT8()
-        topic.Revised = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ)
+        topic.Revised = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ())
         return
 
     def update_topic_count(self, topic):
