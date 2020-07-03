@@ -36,10 +36,6 @@ class SRS:
             time.sleep(2)
             if creset:
                 self.reset_loop(record)
-            else:
-                time.sleep(2)
-                if creset:
-                    self.reset_loop(record)
         time.sleep(3)
 
     def add_row_callback(self, row):
@@ -213,10 +209,12 @@ class SRS:
         print("Resetting questions...")
         for q in qs:
             q.Rank = "No idea"
-            q.qnsRevised = None
+            q.qnsRevised = NotionDate(start=None)
             q.ease = None
             q.p_interval = None
-        topic.revised = None
+        print("Updating topics...")
+        topic.revised = NotionDate(start=None)
+        topic.counts = 0
         print("Topic reset.")
         return
 
