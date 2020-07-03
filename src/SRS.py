@@ -214,7 +214,7 @@ class SRS:
             q.p_interval = None
         print("Updating topics...")
         topic.revised = None
-        topic.counts = 0
+        topic.counts = None
         print("Topic reset.")
         return
 
