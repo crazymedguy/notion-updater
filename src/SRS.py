@@ -28,6 +28,18 @@ class SRS:
             print("Updating \n", record.topics)
             self.main(record)
             print("Done!\n")
+        reset = record.reset
+        creset = record.confirm_reset
+        record.reset = False
+        record.confirm_reset = False
+        if reset:
+            time.sleep(2)
+            if creset:
+                self.reset_loop(record)
+            else:
+                time.sleep(2)
+                if creset:
+                    self.reset_loop(record)
         time.sleep(3)
 
     def add_row_callback(self, row):
@@ -192,6 +204,21 @@ class SRS:
                 elapsed = time.time() - start_time
                 if elapsed == timelimit:
                     n = False
+
+    def reset_loop(self, record):
+        # clean up questions
+        # backup statistics
+        topic = self.fetch_topic(record)
+        qs = copy.copy(topic.questions)
+        print("Resetting questions...")
+        for q in qs:
+            q.Rank = "No idea"
+            q.qnsRevised = None
+            q.ease = None
+            q.p_interval = None
+        topic.revised = None
+        print("Topic reset.")
+        return
 
 
 p = SRS()

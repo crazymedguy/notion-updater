@@ -20,8 +20,12 @@ class TaskManager:
         # If 10 instances, abort task.
         # If <10, create until 10.
         # If selected to be "deleted", remove all instances.
+
         return
 
     def start_loop(self):
         self.update_recurring_tasks()
         return
+
+TM = TaskManager()
+TM.start_loop()
