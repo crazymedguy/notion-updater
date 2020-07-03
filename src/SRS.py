@@ -209,11 +209,11 @@ class SRS:
         print("Resetting questions...")
         for q in qs:
             q.Rank = "No idea"
-            q.qnsRevised = NotionDate(start=None)
+            q.qnsRevised = None
             q.ease = None
             q.p_interval = None
         print("Updating topics...")
-        topic.revised = NotionDate(start=None)
+        topic.revised = None
         topic.counts = 0
         print("Topic reset.")
         return
