@@ -102,6 +102,9 @@ class SRS:
         for q in m:
             e = q[0]
             g = q[1]
+            print(e)
+            print(g)
+            print(self.desired_success_rate)
             ne = e * math.log(self.desired_success_rate) / math.log(g)
             q[0] = ne
         return m
