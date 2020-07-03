@@ -5,6 +5,7 @@ import time
 import copy
 import numpy as np
 from src.Config import Config
+import sys
 
 class SRS:
     def __init__(self, config=Config()):
@@ -105,6 +106,7 @@ class SRS:
             print(e)
             print(g)
             print(self.desired_success_rate)
+            sys.stdout.flush()
             ne = e * math.log(self.desired_success_rate) / math.log(g)
             q[0] = ne
         return m
