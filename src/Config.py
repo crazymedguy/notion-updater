@@ -1,6 +1,6 @@
 from os import environ
 from cachetools import cached
-from datetime import datetime
+from datetime import datetime, date
 from pytz import timezone
 from notion.client import NotionClient
 
@@ -27,4 +27,8 @@ class Config():
     def nowGMT8(self):
         x = datetime.now()
         x = x.astimezone(self.localTZ())
+        return x
+
+    def todayGMT8(self):
+        x = date.today()
         return x

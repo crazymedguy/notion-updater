@@ -213,11 +213,10 @@ class SRS:
             q.ease = None
             q.p_interval = None
         print("Updating topics...")
-        topic.revised = None
-        topic.counts = None
+        topic.Revised = None
+        topic.Counts = None
         print("Topic reset.")
         return
-
 
 p = SRS()
 p.start_loop()
