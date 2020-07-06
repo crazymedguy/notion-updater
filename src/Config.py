@@ -21,6 +21,10 @@ class Config():
         return environ['DAILY_COLLECTION_URL']
 
     @cached(cache={})
+    def guild_collection_url(self):
+        return environ['GUILD_COLLECTION_URL']
+
+    @cached(cache={})
     def localTZ(self):
         return timezone(environ['LOCAL_TIME_ZONE'])
 
