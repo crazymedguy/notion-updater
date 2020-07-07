@@ -1,6 +1,5 @@
 from notion.collection import NotionDate
 import math
-from datetime import datetime
 import time
 import copy
 import numpy as np
@@ -159,8 +158,8 @@ class SRS:
 
     def update_topic_date(self, topic):
         print("Updating topic date...")
-        timeNow = self.config.nowGMT8()
-        topic.Revised = NotionDate(start=timeNow,end=None,timezone=self.config.localTZ())
+        time_now = self.config.nowGMT8()
+        topic.Revised = NotionDate(start=time_now,end=None,timezone=self.config.localTZ())
         return
 
     def update_topic_count(self, topic):
@@ -187,19 +186,12 @@ class SRS:
         return
 
     def start_loop(self):
+        self.collection.add_callback(self.collection_callback)
+        self.register_row_callbacks(self.collection)
+        print("\nMonitoring now...\n")
+        self.client.start_monitoring()
         while True:
-            start_time = time.time()
-            self.collection.add_callback(self.collection_callback)
-            self.register_row_callbacks(self.collection)
-            print("\nMonitoring now...\n")
-            timelimit = 3600
-            n = True
-            while n:
-                self.client.start_monitoring()
-                time.sleep(0.01)
-                elapsed = time.time() - start_time
-                if elapsed == timelimit:
-                    n = False
+            time.sleep(0.01)
 
     def reset_loop(self, record):
         # clean up questions

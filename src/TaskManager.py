@@ -23,7 +23,7 @@ class TaskManager:
         for row in self.daily_collection().collection.get_rows():
             if row.Events == today.strftime("%a - %d/%m/%Y"):
                 need_add = False
-        if need_add == True:
+        if need_add:
             print("Adding daily for {}".format(today))
             self.add_new_daily()
         else:
@@ -43,15 +43,16 @@ class TaskManager:
         today = self.config.todayGMT8()
         need_update = True
         for parent in self.guild_collection().collection.get_rows():
-            if parent.Frequency != None:
-                for child in parent.children:
-                    if child.Name == "{} Pomodoro for {}".format(today, parent.Name):
-                        need_update = False
-                if need_update == True:
-                    print("No daily pomodoro for {}, now adding...".format(parent.Name))
-                    self.update_daily_pomodoros(parent)
-                else:
-                    print("Daily pomodoro already existing for {}".format(parent.Name))
+            if parent.Status == "Working On It":
+                if parent.Frequency is not None:
+                    for child in parent.children:
+                        if child.Name == "{} Pomodoro for {}".format(today, parent.Name):
+                            need_update = False
+                    if need_update:
+                        print("No daily pomodoro for {}, now adding...".format(parent.Name))
+                        self.update_daily_pomodoros(parent)
+                    else:
+                        print("Daily pomodoro already existing for {}".format(parent.Name))
         return
 
     def update_daily_pomodoros(self, parent):
