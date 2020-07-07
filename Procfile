@@ -1,1 +1,1 @@
-worker: gunicorn python src/SRS.py
+worker: gunicorn src/SRS.py
