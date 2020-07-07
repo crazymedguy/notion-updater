@@ -191,7 +191,7 @@ class SRS:
         print("\nMonitoring now...\n")
         self.client.start_monitoring()
         while True:
-            time.sleep(0.01)
+            time.sleep(1)
 
     def reset_loop(self, record):
         # clean up questions
