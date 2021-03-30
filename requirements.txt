@@ -37,7 +37,7 @@ polling==0.3.1
 protobuf==3.12.2
 pycparser==2.20
 pyee==6.0.0
-Pygments==2.4.2
+Pygments==2.7.4
 PyInstaller==3.5
 pyjsparser==2.7.1
 pyOpenSSL==19.1.0
